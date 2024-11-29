@@ -3,19 +3,19 @@ import react from '@vitejs/plugin-react'
 import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
 
-// 创建不同框架的构建配置
+const entry = {
+  core: './src/core.ts',
+  react: './src/react/valkit-react.tsx',
+  vue: './src/vue/valkit-vue.ts',
+}
 export default defineConfig({
   build: {
     lib: {
-      entry: {
-        core: './src/core.ts',
-        react: './src/valkit-react.tsx',
-        vue: './src/valkit-vue.ts',
-      },
+      entry,
       formats: ['es', 'cjs'],
       fileName: (format, entryName) => {
         if (format === 'es') return `${entryName}.js`
-        return `${entryName}.${format}.js`
+        return `${entryName}.${format}`
       },
     },
     rollupOptions: {
@@ -32,7 +32,7 @@ export default defineConfig({
     react(),
     vue(),
     dts({
-      include: ['src/core.ts', 'src/valkit-react.tsx', 'src/valkit-vue.ts'],
+      include: Object.keys(entry).map((i) => entry[i]),
       entryRoot: 'src',
       insertTypesEntry: true,
     }),

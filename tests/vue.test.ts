@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import Valkit from '../src/valkit-vue'
+import { Valkit } from '../src/vue/valkit-vue'
 import { mount } from '@vue/test-utils'
 
 describe('valkit vue', () => {
@@ -7,7 +7,7 @@ describe('valkit vue', () => {
     const wrapper = mount(Valkit, {
       props: {
         value: 1,
-        handler: (v) => v,
+        resolver: (v) => v,
       },
       slots: {
         default: '<div>{{ value }}</div>',
@@ -16,4 +16,3 @@ describe('valkit vue', () => {
     expect(wrapper.html()).toBe('<div>1</div>')
   })
 })
-
