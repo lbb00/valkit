@@ -14,14 +14,22 @@
 - `valkit(value, resolver)`
 - `valkitResolve(value, resolver)`
 - `valkitIs(value, predicate)`
+- `valkitSafe(value, fallback)`
 
 ```ts
-import { valkit } from 'valkit'
+import { valkit, valkitResolve, valkitIs, valkitSafe } from 'valkit'
 valkit(1, (v) => v) // 1
 valkit(
   () => 1,
   (v) => v
 ) // 1
+
+valkitIs(1, (v) => v === 1) // true
+
+valkitSafe(1) // 1
+valkitSafe(() => {
+  throw new Error('test')
+}, 1) // 1
 ```
 
 ### React
@@ -31,8 +39,7 @@ valkit(
 
 ```jsx
 import { Valkit } from 'valkit/react'
-
-<Valkit value={1} handler={(v) => v} render={(v) => <div>{v}</div>} />
+;<Valkit value={1} handler={(v) => v} render={(v) => <div>{v}</div>} />
 ```
 
 ### Vue
@@ -42,7 +49,7 @@ import { Valkit } from 'valkit/react'
 
 ```html
 <script setup>
-import { Valkit } from 'valkit/vue'
+  import { Valkit } from 'valkit/vue'
 </script>
 
 <template>
