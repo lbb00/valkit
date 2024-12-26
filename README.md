@@ -39,7 +39,7 @@ valkitSafe(() => {
 
 ```jsx
 import { Valkit } from 'valkit/react'
-;<Valkit value={1} handler={(v) => v} render={(v) => <div>{v}</div>} />
+;<Valkit value={1} resolver={(v) => v} render={(v) => <div>{v}</div>} />
 ```
 
 ### Vue
@@ -53,7 +53,7 @@ import { Valkit } from 'valkit/react'
 </script>
 
 <template>
-  <Valkit :value="1" :handler="(v) => v">
+  <Valkit :value="1" :resolver="(v) => v">
     <template #default="{ value }">
       <div>{{ value }}</div>
     </template>
