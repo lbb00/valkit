@@ -2,6 +2,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
+import fs from 'node:fs/promises'
+import glob from 'fast-glob'
 
 const entry = {
   core: './src/core.ts',
@@ -32,9 +34,19 @@ export default defineConfig({
     react(),
     vue(),
     dts({
-      include: Object.keys(entry).map((i) => entry[i]),
       entryRoot: 'src',
       insertTypesEntry: true,
+      rollupTypes: true,
+      outDir: './dist/types',
+      async afterBuild() {
+        const files = glob.sync('dist/types/**/*.d.{ts,ts.map}', {
+          nodir: true,
+        })
+        for (const file of files) {
+          const newFilePath = file.replace(/\.d\.ts(\.map)?$/, '.d.cts$1')
+          await fs.copyFile(file, newFilePath)
+        }
+      },
     }),
   ],
   test: {

@@ -1,32 +1,52 @@
 {
   "name": "valkit",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "valkit",
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/types/core.d.ts",
-      "import": "./dist/core.js",
-      "require": "./dist/core.js"
+      "import": {
+        "types": "./dist/types/core.d.ts",
+        "default": "./dist/core.js"
+      },
+      "require": {
+        "types": "./dist/types/core.d.cts",
+        "default": "./dist/core.cjs"
+      }
     },
     "./core": {
-      "types": "./dist/types/core.d.ts",
-      "import": "./dist/core.js",
-      "require": "./dist/core.cjs"
+      "import": {
+        "types": "./dist/types/core.d.ts",
+        "default": "./dist/core.js"
+      },
+      "require": {
+        "types": "./dist/types/core.d.cts",
+        "default": "./dist/core.cjs"
+      }
     },
     "./react": {
-      "types": "./dist/types/react.d.ts",
-      "import": "./dist/react.js",
-      "require": "./dist/react.cjs"
+      "import": {
+        "types": "./dist/types/react.d.ts",
+        "default": "./dist/react.js"
+      },
+      "require": {
+        "types": "./dist/types/react.d.cts",
+        "default": "./dist/react.cjs"
+      }
     },
     "./vue": {
-      "types": "./dist/types/vue.d.ts",
-      "import": "./dist/vue.js",
-      "require": "./dist/vue.cjs"
+      "import": {
+        "types": "./dist/types/vue.d.ts",
+        "default": "./dist/vue.js"
+      },
+      "require": {
+        "types": "./dist/types/vue.d.cts",
+        "default": "./dist/vue.cjs"
+      }
     }
   },
   "main": "dist/core.js",
-  "types": "dist/core.d.ts",
+  "types": "dist/types/core.d.ts",
   "scripts": {
     "test": "vitest",
     "build": "vite build"
@@ -46,23 +66,25 @@
     "url": "git+https://github.com/lbb00/valkit.git"
   },
   "author": "lbb00",
-  "license": "MIT",
+  "license": "Unlicense",
   "devDependencies": {
-    "@testing-library/react": "^16.0.1",
+    "@testing-library/react": "^16.2.0",
     "@vitejs/plugin-react": "^4.3.4",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/test-utils": "^2.4.6",
+    "fast-glob": "^3.3.3",
     "jsdom": "^25.0.1",
     "react": "^18.3.1",
-    "typescript": "^5.7.2",
-    "vite": "^6.0.1",
-    "vite-plugin-dts": "^4.3.0",
-    "vitest": "^2.1.6",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.1",
+    "vite-plugin-dts": "^4.5.3",
+    "vitest": "^2.1.9",
     "vue": "^3.5.13"
   },
   "optionalDependencies": {
-    "react": ">16",
+    "react": ">=16",
     "vue": ">=3"
   },
+  "sideEffects": false,
   "packageManager": "pnpm@9.13.2+sha512.88c9c3864450350e65a33587ab801acf946d7c814ed1134da4a924f6df5a2120fd36b46aab68f7cd1d413149112d53c7db3a4136624cfd00ff1846a0c6cef48a"
 }
